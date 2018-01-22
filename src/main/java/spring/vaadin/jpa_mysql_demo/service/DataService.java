@@ -1,8 +1,12 @@
-package spring.vaadin.jpa_mysql_demo;
+package spring.vaadin.jpa_mysql_demo.service;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+
+import spring.vaadin.jpa_mysql_demo.data.Entity;
+import spring.vaadin.jpa_mysql_demo.data.Factory;
+import spring.vaadin.jpa_mysql_demo.repository.CustomJpaRepository;
 
 public interface DataService<E extends Entity, K extends Serializable> {
 

@@ -1,4 +1,4 @@
-package spring.vaadin.jpa_mysql_demo;
+package spring.vaadin.jpa_mysql_demo.ui;
 
 
 import static org.mockito.BDDMockito.then;
@@ -11,6 +11,10 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import spring.vaadin.jpa_mysql_demo.data.Customer;
+import spring.vaadin.jpa_mysql_demo.service.CustomerService;
+import spring.vaadin.jpa_mysql_demo.ui.CustomerEditor;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomerEditorTests {

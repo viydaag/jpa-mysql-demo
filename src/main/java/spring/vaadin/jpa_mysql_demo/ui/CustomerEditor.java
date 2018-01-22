@@ -1,4 +1,4 @@
-package spring.vaadin.jpa_mysql_demo;
+package spring.vaadin.jpa_mysql_demo.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +12,9 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+
+import spring.vaadin.jpa_mysql_demo.data.Customer;
+import spring.vaadin.jpa_mysql_demo.service.CustomerService;
 
 /**
  * A simple example to introduce building forms. As your real application is probably much

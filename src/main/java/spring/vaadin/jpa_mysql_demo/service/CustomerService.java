@@ -1,9 +1,12 @@
-package spring.vaadin.jpa_mysql_demo;
+package spring.vaadin.jpa_mysql_demo.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import spring.vaadin.jpa_mysql_demo.data.Customer;
+import spring.vaadin.jpa_mysql_demo.repository.CustomerRepository;
 
 @Service
 public class CustomerService

@@ -1,10 +1,14 @@
-package spring.vaadin.jpa_mysql_demo;
+package spring.vaadin.jpa_mysql_demo.service;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import spring.vaadin.jpa_mysql_demo.data.Entity;
+import spring.vaadin.jpa_mysql_demo.data.Factory;
+import spring.vaadin.jpa_mysql_demo.repository.CustomJpaRepository;
 
 @Transactional
 public abstract class AbstractDataService<E extends Entity, K extends Serializable> implements DataService<E, K>, Serializable {

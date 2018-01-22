@@ -1,4 +1,4 @@
-package spring.vaadin.jpa_mysql_demo;
+package spring.vaadin.jpa_mysql_demo.repository;
 
 import java.io.Serializable;
 import java.util.List;

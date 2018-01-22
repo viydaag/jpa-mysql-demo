@@ -1,4 +1,4 @@
-package spring.vaadin.jpa_mysql_demo;
+package spring.vaadin.jpa_mysql_demo.data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Customer
-        implements spring.vaadin.jpa_mysql_demo.Entity {
+        implements spring.vaadin.jpa_mysql_demo.data.Entity {
 
     private static final long serialVersionUID = -7313977137461057204L;
 
@@ -18,7 +18,7 @@ public class Customer
 
 	private String lastName;
 
-	protected Customer() {
+    public Customer() {
 	}
 
 	public Customer(String firstName, String lastName) {

@@ -6,18 +6,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import spring.vaadin.jpa_mysql_demo.repository.CustomJpaRepositoryImpl;
+
 //@Configuration
 //@ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
 //        @Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
 @SpringBootApplication
-@EnableJpaRepositories(repositoryBaseClass = CustomJpaRepositoryImpl.class)
+@EnableJpaRepositories(repositoryBaseClass = CustomJpaRepositoryImpl.class, basePackages = "spring.vaadin.jpa_mysql_demo.repository")
 public class Application {
 
-	private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class);
+    }
 
     //	@Bean
     //	public CommandLineRunner loadData(CustomerRepository repository) {

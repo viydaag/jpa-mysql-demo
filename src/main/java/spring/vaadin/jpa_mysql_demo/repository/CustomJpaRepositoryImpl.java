@@ -1,4 +1,4 @@
-package spring.vaadin.jpa_mysql_demo;
+package spring.vaadin.jpa_mysql_demo.repository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -36,7 +36,7 @@ public class CustomJpaRepositoryImpl<T, ID extends Serializable>
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> cQuery = builder.createQuery(getDomainClass());
         Root<T> root = cQuery.from(getDomainClass());
-        cQuery.select(root).where(builder.like(root.<String> get(attributeName), "%" + text + "%"));
+        cQuery.select(root).where(builder.like(builder.lower(root.<String> get(attributeName)), "%" + text.toLowerCase() + "%"));
         TypedQuery<T> query = entityManager.createQuery(cQuery);
         return query.getResultList();
     }
