@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import spring.vaadin.jpa_mysql_demo.data.Entity;
@@ -69,6 +71,16 @@ public abstract class AbstractDataService<E extends Entity, K extends Serializab
     @Override
     public List<E> findAll() {
         return entityRepository.findAll();
+    }
+
+    @Override
+    public List<E> findByAttributeContainsText(String attributeName, String text) {
+        return entityRepository.findByAttributeContainsText(attributeName, text);
+    }
+
+    @Override
+    public Page<E> findByAttributeContainsText(String attributeName, String text, Pageable page) {
+        return entityRepository.findByAttributeContainsText(attributeName, text, page);
     }
 
 

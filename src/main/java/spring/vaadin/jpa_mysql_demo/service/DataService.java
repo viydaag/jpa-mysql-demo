@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import spring.vaadin.jpa_mysql_demo.data.Entity;
 import spring.vaadin.jpa_mysql_demo.data.Factory;
 import spring.vaadin.jpa_mysql_demo.repository.CustomJpaRepository;
@@ -48,6 +51,10 @@ public interface DataService<E extends Entity, K extends Serializable> {
      * @return all instances of the entity
      */
     List<E> findAll();
+
+    List<E> findByAttributeContainsText(String attributeName, String text);
+
+    Page<E> findByAttributeContainsText(String attributeName, String text, Pageable page);
 
     
     /**

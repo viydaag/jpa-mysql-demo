@@ -1,8 +1,15 @@
 package spring.vaadin.jpa_mysql_demo.ui;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.vaadin.artur.spring.dataprovider.FilterablePageableDataProvider;
+
+import com.vaadin.data.provider.Query;
+import com.vaadin.data.provider.QuerySortOrder;
+import com.vaadin.data.provider.Sort;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.ValueChangeMode;
@@ -32,6 +39,34 @@ public class VaadinUI extends UI {
 
 	private final Button addNewBtn;
 
+    FilterablePageableDataProvider<Customer, Object> dataProvider = new FilterablePageableDataProvider<Customer, Object>() {
+
+        private static final long serialVersionUID = -5538531041392009423L;
+
+        @Override
+        protected Page<Customer> fetchFromBackEnd(Query<Customer, Object> query, Pageable pageable) {
+            return service.findByAttributeContainsText("lastName", getRepoFilter(), pageable);
+        }
+
+        @Override
+        protected int sizeInBackEnd(Query<Customer, Object> query) {
+            //TODO optimize this
+            return service.findByAttributeContainsText("lastName", getRepoFilter()).size();
+        }
+
+        private String getRepoFilter() {
+            String filter = getOptionalFilter().orElse("");
+            return filter;
+        }
+
+        @Override
+        protected List<QuerySortOrder> getDefaultSortOrders() {
+            return Sort.asc("lastName").build();
+        }
+
+
+    };
+
 	@Autowired
     public VaadinUI(CustomerService service, CustomerEditor editor) {
         this.service = service;
@@ -50,6 +85,7 @@ public class VaadinUI extends UI {
 
 		grid.setHeight(300, Unit.PIXELS);
 		grid.setColumns("id", "firstName", "lastName");
+        grid.setDataProvider(dataProvider);
 
 		filter.setPlaceholder("Filter by last name");
 
@@ -74,17 +110,18 @@ public class VaadinUI extends UI {
 		});
 
 		// Initialize listing
-		listCustomers(null);
+        listCustomers("");
 	}
 
 	// tag::listCustomers[]
 	void listCustomers(String filterText) {
-		if (StringUtils.isEmpty(filterText)) {
-            grid.setItems(service.findAll());
-		}
-		else {
-            grid.setItems(service.findByLastNameStartsWithIgnoreCase(filterText));
-		}
+        dataProvider.setFilter(filterText);
+        //		if (StringUtils.isEmpty(filterText)) {
+        //            grid.setItems(service.findAll());
+        //		}
+        //		else {
+        //            grid.setItems(service.findByLastNameStartsWithIgnoreCase(filterText));
+        //		}
 	}
 	// end::listCustomers[]
 
